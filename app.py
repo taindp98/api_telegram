@@ -1,8 +1,7 @@
 #import requests
 #from flask import Flask, render_template, request
 import json
-import telegram
-import telebot
+#import telebot
 import requests
 
 #api_key='1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck'
@@ -28,7 +27,11 @@ import requests
 import re
 from flask import Flask, request
 import telegram
-from telebot.credentials import bot_token, bot_user_name,URL
+#from telebot.credentials import bot_token, bot_user_name,URL
+
+bot_token = "1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck"
+bot_user_name = "BKBot"
+URL = "https://telegram-hcmut.herokuapp.com/"
 
 
 global bot
