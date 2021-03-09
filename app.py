@@ -25,29 +25,30 @@ def respond():
    # retrieve the message in JSON and then transform it to Telegram object
    update = telegram.Update.de_json(request.get_json(force=True), bot)
 
-   print('update',update)
-   
+   # print('update',update)
+
    # if update.message:
    chat_id = update.message.chat.id
    msg_id = update.message.message_id
 
    # Telegram understands UTF-8, so encode text for unicode compatibility
-   text = update.message.text.encode('utf-8').decode()
-   # for debugging purposes only
-   print("got text message :", text)
-   # the first time you chat with the bot AKA the welcoming message
-   
-   chatbot_sys_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
-   input_data = {}
-   input_data['message'] = str(text)
-   input_data['state_tracker_id'] = chat_id
-   r = requests.post(url=chatbot_sys_api_url, json=input_data)
-   chatbot_respose = r.json()
-   mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
-   
-   bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+   if update.message.text:
+	   text = update.message.text.encode('utf-8').decode()
+	   # for debugging purposes only
+	   print("got text message :", text)
+	   # the first time you chat with the bot AKA the welcoming message
+	   
+	   chatbot_sys_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
+	   input_data = {}
+	   input_data['message'] = str(text)
+	   input_data['state_tracker_id'] = chat_id
+	   r = requests.post(url=chatbot_sys_api_url, json=input_data)
+	   chatbot_respose = r.json()
+	   mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
+	   
+	   bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
 
-   return 'ok'
+	   return 'ok'
    # else:
    		# return 'fail'
 
