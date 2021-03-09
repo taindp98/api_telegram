@@ -49,8 +49,8 @@ def respond():
 	   bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
 
 	   return 'ok'
-   # else:
-   		# return 'fail'
+   else:
+   	   return 'fail'
 
 @app.route('/set_webhook', methods=['GET', 'POST'])
 def set_webhook():
