@@ -36,7 +36,7 @@ URL = "https://telegram-hcmut.herokuapp.com/"
 
 global bot
 global TOKEN
-TOKEN = api_key
+TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
 app = Flask(__name__)
