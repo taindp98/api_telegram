@@ -5,7 +5,7 @@ import telegram
 import telebot
 import requests
 
-api_key='1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck'
+#api_key='1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck'
 # def get_bot_response():
 #     url = "https://api.telegram.org/bot{}/getUpdates".format(api_key)
 #     response = requests.get(url)
