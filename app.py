@@ -8,7 +8,8 @@ from flask import Flask, request
 import telegram
 #from telebot.credentials import bot_token, bot_user_name,URL
 
-bot_token = "1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck"
+# bot_token = "1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck"
+bot_token = '1607480015:AAGcyTXEn7j42RP-0J1ri8kt_-QWLXGkmTU'
 bot_user_name = "BKBot"
 URL = "https://telegram-hcmut.herokuapp.com/"
 
