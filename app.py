@@ -42,8 +42,8 @@ def respond():
 		print('page',page)
 
 		bot.delete_message(
-        update.message.chat.id,
-        update.message.message_id
+        chat_id = chat_id,
+        reply_to_message_id = msg_id
     	)
 
 		paginator = InlineKeyboardPaginator(
