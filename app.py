@@ -129,7 +129,7 @@ def respond():
 
 			return 'ok'
 
-		elif var_callback:
+		elif var_callback and not update.message.text:
 			page = int(var_callback.data.split('#')[1])
 
 			paginator = InlineKeyboardPaginator(
@@ -147,7 +147,7 @@ def respond():
 				# reply_markup=paginator.markup
 				)
 			return 'ok'
-			
+
 		else:
 			return 'fail'
 	else:
