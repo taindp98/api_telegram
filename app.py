@@ -33,8 +33,8 @@ def respond():
 
    # print('update',update)
 	query = update.callback_query
-    query.answer()
-    page = int(query.data.split('#')[1])
+	query.answer()
+	page = int(query.data.split('#')[1])
 
 	if update.message:
 		chat_id = update.message.chat.id
