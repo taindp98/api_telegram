@@ -32,35 +32,38 @@ app = Flask(__name__)
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
-	global chat_id
-	global msg_id
+	# global chat_id
+	# global msg_id
+
+	global list_mess_response
 
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
 	var_callback = update.callback_query
 
-	if var_callback:
-		page = int(var_callback.data.split('#')[1])
-		print('page',page)
+	# if var_callback:
+		# page = int(var_callback.data.split('#')[1])
 
-		bot.delete_message(
-        chat_id,
-        msg_id
-    	)
+	# print('page',page)
 
-		paginator = InlineKeyboardPaginator(
-		page_count = len(list_mess_response),
-		current_page=page,
-		data_pattern='Trang#{page}'
-		)
+		# bot.delete_message(
+        # chat_id,
+        # msg_id
+    	# )
+
+		# paginator = InlineKeyboardPaginator(
+		# page_count = len(list_mess_response),
+		# current_page=page,
+		# data_pattern='Trang#{page}'
+		# )
 	
-		# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-		bot.sendMessage(
-			chat_id=chat_id, 
-			text=list_mess_response[page-1], 
-			reply_to_message_id=msg_id,
-			reply_markup=paginator.markup)
+		# # bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+		# bot.sendMessage(
+		# 	chat_id=chat_id, 
+		# 	text=list_mess_response[page-1], 
+		# 	reply_to_message_id=msg_id,
+		# 	reply_markup=paginator.markup)
 
    # print('update',update)
 	# query = update.callback_query
@@ -101,7 +104,8 @@ def respond():
 
 				var_callback = update.callback_query
 				## default page 1
-				page = 1
+				if not page:
+					page = 1
 				# if var_callback:
 					# page = int(var_callback.data.split('#')[1])
 
@@ -124,6 +128,26 @@ def respond():
 				bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
 
 			return 'ok'
+
+		elif var_callback:
+			page = int(var_callback.data.split('#')[1])
+
+			paginator = InlineKeyboardPaginator(
+				page_count = len(list_mess_response),
+				current_page=page,
+				data_pattern='Trang#{page}'
+				)
+			
+				# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+			bot.edit_message_text(
+				chat_id=chat_id, 
+				text=list_mess_response[page-1], 
+				message_id=msg_id,
+				reply_markup=reply_markup
+				# reply_markup=paginator.markup
+				)
+			return 'ok'
+			
 		else:
 			return 'fail'
 	else:
