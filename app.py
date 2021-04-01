@@ -141,12 +141,12 @@ def respond():
 				)
 			
 				# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-			bot.edit_message_text(
+			bot.editMessageText(
 				chat_id=chat_id, 
 				text=list_mess_response[page-1], 
-				message_id=msg_id,
-				reply_markup=reply_markup
-				# reply_markup=paginator.markup
+				reply_to_message_id=msg_id,
+				# reply_markup=reply_markup
+				reply_markup=paginator.markup
 				)
 			return 'ok'
 
