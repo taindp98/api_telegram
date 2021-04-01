@@ -27,12 +27,15 @@ app = Flask(__name__)
 
 
 
+
+
+
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
-	print('call back',telegram.CallbackQuery.de_json(request.get_json(force=True), bot))
+
    # print('update',update)
 	# query = update.callback_query
 	# query.answer()
@@ -42,7 +45,9 @@ def respond():
 		chat_id = update.message.chat.id
 		msg_id = update.message.message_id
 
-   # Telegram understands UTF-8, so encode text for unicode compatibility
+
+
+	# Telegram understands UTF-8, so encode text for unicode compatibility
 		if update.message.text:
 			text = update.message.text.encode('utf-8').decode()
 			# for debugging purposes only
@@ -60,6 +65,14 @@ def respond():
 
 			if len(list_mess_response) > 1:
 			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
+
+				@bot.callback_query_handler(func=lambda call: call.data.split('#')[0]=='Trang')
+				page = int(call.data.split('#')[1])
+				bot.delete_message(
+					call.message.chat.id,
+					call.message.message_id
+				)
+
 				paginator = InlineKeyboardPaginator(
 				page_count = len(list_mess_response),
 				current_page=page,
