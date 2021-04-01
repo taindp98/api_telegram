@@ -52,7 +52,7 @@ def respond():
 			list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
 
 			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
-
+			page = 1
 			paginator = InlineKeyboardPaginator(
 			page_count = len(list_mess_response),
 			current_page=page,
