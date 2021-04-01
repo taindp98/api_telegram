@@ -47,14 +47,14 @@ def respond():
 			input_data['message'] = str(text)
 			input_data['state_tracker_id'] = chat_id
 			r = requests.post(url=chatbot_sys_api_url, json=input_data)
-			mess_respose = r.json()
+			mess_response = r.json()
 
-			list_mess_respose = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
+			list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
 
 			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
 
 			paginator = InlineKeyboardPaginator(
-			page_count = len(list_mess_respose),
+			page_count = len(list_mess_response),
 			current_page=page,
 			data_pattern='Trang#{page}'
 			)
@@ -62,7 +62,7 @@ def respond():
 			# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
 			bot.sendMessage(
 				chat_id=chat_id, 
-				text=list_mess_respose[page-1], 
+				text=list_mess_response[page-1], 
 				reply_to_message_id=msg_id,
 				reply_markup=paginator.markup)
 
