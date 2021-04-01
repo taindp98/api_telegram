@@ -67,11 +67,12 @@ def respond():
 			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
 
 				@bot.callback_query_handler(func=lambda call: call.data.split('#')[0]=='Trang')
-				page = int(call.data.split('#')[1])
-				bot.delete_message(
-					call.message.chat.id,
-					call.message.message_id
-				)
+				print(call)
+				# page = int(call.data.split('#')[1])
+				# bot.delete_message(
+				# 	call.message.chat.id,
+				# 	call.message.message_id
+				# )
 
 				paginator = InlineKeyboardPaginator(
 				page_count = len(list_mess_response),
