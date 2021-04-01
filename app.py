@@ -51,21 +51,23 @@ def respond():
 
 			list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
 
+			if len(list_mess_response) > 1:
 			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
-			page = 1
-			paginator = InlineKeyboardPaginator(
-			page_count = len(list_mess_response),
-			current_page=page,
-			data_pattern='Trang#{page}'
-			)
-			
-			# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-			bot.sendMessage(
-				chat_id=chat_id, 
-				text=list_mess_response[page-1], 
-				reply_to_message_id=msg_id,
-				reply_markup=paginator.markup)
-
+				page = 1
+				paginator = InlineKeyboardPaginator(
+				page_count = len(list_mess_response),
+				current_page=page,
+				data_pattern='Trang#{page}'
+				)
+				
+				# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+				bot.sendMessage(
+					chat_id=chat_id, 
+					text=list_mess_response[page-1], 
+					reply_to_message_id=msg_id,
+					reply_markup=paginator.markup)
+			else:
+				bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
 
 			return 'ok'
 		else:
