@@ -35,7 +35,7 @@ def respond():
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
-	var_callback = update.callback_query
+	# var_callback = update.callback_query
 
 
    # print('update',update)
@@ -74,6 +74,7 @@ def respond():
 				# 	call.message.message_id
 				# )
 				# page = 1
+				var_callback = update.callback_query
 				if var_callback:
 
 					page = int(var_callback.data.split('#')[1])
