@@ -36,6 +36,7 @@ def respond():
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
 	var_callback = update.callback_query
+	print('var_callback',var_callback)
 	if var_callback:
 		print('page',int(var_callback.data.split('#')[1]))
 
