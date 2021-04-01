@@ -134,6 +134,8 @@ def respond():
 		elif var_callback:
 			page = int(var_callback.data.split('#')[1])
 
+			print('page',page)
+			
 			paginator = InlineKeyboardPaginator(
 				page_count = len(list_mess_response),
 				current_page=page,
@@ -141,7 +143,8 @@ def respond():
 				)
 			
 				# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-			bot.editMessageText(
+			# bot.editMessageText(
+			bot.sendMessage(
 				chat_id=chat_id, 
 				text=list_mess_response[page-1], 
 				reply_to_message_id=msg_id,
