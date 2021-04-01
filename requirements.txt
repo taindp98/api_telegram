@@ -4,3 +4,4 @@ requests
 gunicorn
 pyTelegramBotAPI==3.7.6
 python-telegram-bot==13.1
+python-telegram-bot-pagination

@@ -6,6 +6,9 @@ import requests
 import re
 from flask import Flask, request
 import telegram
+
+from telegram_bot_pagination import InlineKeyboardPaginator
+
 #from telebot.credentials import bot_token, bot_user_name,URL
 
 # bot_token = "1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck"
@@ -34,20 +37,35 @@ def respond():
 
    # Telegram understands UTF-8, so encode text for unicode compatibility
 	   if update.message.text:
-		   text = update.message.text.encode('utf-8').decode()
-		   # for debugging purposes only
-		   print("got text message :", text)
-		   # the first time you chat with the bot AKA the welcoming message
-		   
-		   chatbot_sys_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
-		   input_data = {}
-		   input_data['message'] = str(text)
-		   input_data['state_tracker_id'] = chat_id
-		   r = requests.post(url=chatbot_sys_api_url, json=input_data)
-		   chatbot_respose = r.json()
-		   mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
-		   
-		   bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+			text = update.message.text.encode('utf-8').decode()
+			# for debugging purposes only
+			print("got text message :", text)
+			# the first time you chat with the bot AKA the welcoming message
+			
+			chatbot_sys_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
+			input_data = {}
+			input_data['message'] = str(text)
+			input_data['state_tracker_id'] = chat_id
+			r = requests.post(url=chatbot_sys_api_url, json=input_data)
+			mess_respose = r.json()
+
+			list_mess_respose = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
+
+			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
+
+			paginator = InlineKeyboardPaginator(
+			page_count = len(list_mess_respose),
+			current_page=page,
+			data_pattern='Trang#{page}'
+			)
+			
+			# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+			bot.sendMessage(
+				chat_id=chat_id, 
+				text=list_mess_respose[page-1], 
+				reply_to_message_id=msg_id,
+				reply_markup=paginator.markup)
+
 
 		   return 'ok'
 	   else:
