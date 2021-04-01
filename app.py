@@ -84,7 +84,7 @@ def respond():
 				if var_callback:
 					page = int(var_callback.data.split('#')[1])
 
-				# print('page',page)
+				print('page',page)
 
 				paginator = InlineKeyboardPaginator(
 				page_count = len(list_mess_response),
