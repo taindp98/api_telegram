@@ -36,9 +36,8 @@ def respond():
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
 	var_callback = update.callback_query
-	if var_callback:
-		data_callback = var_callback.data
-		print("data_callback",data_callback)
+
+
    # print('update',update)
 	# query = update.callback_query
 	# query.answer()
@@ -74,20 +73,24 @@ def respond():
 				# 	call.message.chat.id,
 				# 	call.message.message_id
 				# )
-				page = 1
-				paginator = InlineKeyboardPaginator(
-				page_count = len(list_mess_response),
-				current_page=page,
-				data_pattern='Trang#{page}'
-				)
+				# page = 1
+				if var_callback:
+					page = int(var_callback.data.split('#')[1])
+
+					paginator = InlineKeyboardPaginator(
+					page_count = len(list_mess_response),
+					current_page=page,
+					data_pattern='Trang#{page}'
+					)
 				
-				# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-				bot.sendMessage(
-					chat_id=chat_id, 
-					text=list_mess_response[page-1], 
-					reply_to_message_id=msg_id,
-					reply_markup=paginator.markup)
+					# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+					bot.sendMessage(
+						chat_id=chat_id, 
+						text=list_mess_response[page-1], 
+						reply_to_message_id=msg_id,
+						reply_markup=paginator.markup)
 			else:
+				
 				bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
 
 			return 'ok'
