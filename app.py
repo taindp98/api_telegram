@@ -8,6 +8,7 @@ from flask import Flask, request
 import telegram
 
 from telegram_bot_pagination import InlineKeyboardPaginator
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 #from telebot.credentials import bot_token, bot_user_name,URL
 
@@ -31,7 +32,7 @@ def respond():
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
-	print('call back',telegram.Update.callback_query.data)
+	print('call back',telegram.CallbackQuery.de_json(request.get_json(force=True), bot))
    # print('update',update)
 	# query = update.callback_query
 	# query.answer()
