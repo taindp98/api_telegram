@@ -34,7 +34,7 @@ app = Flask(__name__)
 def respond():
 	# global chat_id
 	# global msg_id
-
+	global page
 	global list_mess_response
 
    # retrieve the message in JSON and then transform it to Telegram object
@@ -104,8 +104,10 @@ def respond():
 
 				var_callback = update.callback_query
 				## default page 1
-				if not page:
-					page = 1
+				# if not page:
+
+				page = 1
+
 				# if var_callback:
 					# page = int(var_callback.data.split('#')[1])
 
@@ -129,7 +131,7 @@ def respond():
 
 			return 'ok'
 
-		elif var_callback and not update.message.text:
+		elif var_callback:
 			page = int(var_callback.data.split('#')[1])
 
 			paginator = InlineKeyboardPaginator(
