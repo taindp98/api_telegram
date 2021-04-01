@@ -89,8 +89,15 @@ def respond():
 						text=list_mess_response[page-1], 
 						reply_to_message_id=msg_id,
 						reply_markup=paginator.markup)
+				else:
+					bot.sendMessage(
+						chat_id=chat_id, 
+						text=list_mess_response[0], 
+						reply_to_message_id=msg_id
+						# reply_markup=paginator.markup
+						)
 			else:
-				
+
 				bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
 
 			return 'ok'
