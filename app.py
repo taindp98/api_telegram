@@ -24,12 +24,17 @@ bot = telegram.Bot(token=TOKEN)
 
 app = Flask(__name__)
 
+
+
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
    # print('update',update)
+	query = update.callback_query
+    query.answer()
+    page = int(query.data.split('#')[1])
 
 	if update.message:
 		chat_id = update.message.chat.id
@@ -53,7 +58,6 @@ def respond():
 
 			if len(list_mess_response) > 1:
 			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
-				page = 1
 				paginator = InlineKeyboardPaginator(
 				page_count = len(list_mess_response),
 				current_page=page,
