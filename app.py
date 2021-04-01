@@ -35,7 +35,9 @@ def respond():
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
-	print("update",update)
+	var_callback = update.callback_query
+
+	print("var_callback",var_callback)
    # print('update',update)
 	# query = update.callback_query
 	# query.answer()
