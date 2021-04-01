@@ -27,16 +27,16 @@ app = Flask(__name__)
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
    # retrieve the message in JSON and then transform it to Telegram object
-   update = telegram.Update.de_json(request.get_json(force=True), bot)
+	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
    # print('update',update)
 
-   if update.message:
-	   chat_id = update.message.chat.id
-	   msg_id = update.message.message_id
+	if update.message:
+		chat_id = update.message.chat.id
+		msg_id = update.message.message_id
 
    # Telegram understands UTF-8, so encode text for unicode compatibility
-	   if update.message.text:
+		if update.message.text:
 			text = update.message.text.encode('utf-8').decode()
 			# for debugging purposes only
 			print("got text message :", text)
@@ -67,11 +67,11 @@ def respond():
 				reply_markup=paginator.markup)
 
 
-		   return 'ok'
-	   else:
-	   	   return 'fail'
-   else:
-   	   return 'fail'
+			return 'ok'
+		else:
+			return 'fail'
+	else:
+		return 'fail'
 
 @app.route('/set_webhook', methods=['GET', 'POST'])
 def set_webhook():
