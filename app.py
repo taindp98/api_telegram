@@ -42,34 +42,6 @@ def respond():
 
 	var_callback = update.callback_query
 
-	# if var_callback:
-		# page = int(var_callback.data.split('#')[1])
-
-	# print('page',page)
-
-		# bot.delete_message(
-        # chat_id,
-        # msg_id
-    	# )
-
-		# paginator = InlineKeyboardPaginator(
-		# page_count = len(list_mess_response),
-		# current_page=page,
-		# data_pattern='Trang#{page}'
-		# )
-	
-		# # bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-		# bot.sendMessage(
-		# 	chat_id=chat_id, 
-		# 	text=list_mess_response[page-1], 
-		# 	reply_to_message_id=msg_id,
-		# 	reply_markup=paginator.markup)
-
-   # print('update',update)
-	# query = update.callback_query
-	# query.answer()
-	# page = int(query.data.split('#')[1])
-
 	if update.message:
 		chat_id = update.message.chat.id
 		msg_id = update.message.message_id
@@ -92,69 +64,69 @@ def respond():
 
 			list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
 
-			if len(list_mess_response) > 1:
-			# mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
+			# if len(list_mess_response) > 1:
+			# # mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
 
-				# page = int(call.data.split('#')[1])
-				# bot.delete_message(
-				# 	call.message.chat.id,
-				# 	call.message.message_id
-				# )
-				# page = 1
+			# 	# page = int(call.data.split('#')[1])
+			# 	# bot.delete_message(
+			# 	# 	call.message.chat.id,
+			# 	# 	call.message.message_id
+			# 	# )
+			# 	# page = 1
 
-				var_callback = update.callback_query
-				## default page 1
-				# if not page:
+			# 	var_callback = update.callback_query
+			# 	## default page 1
+			# 	# if not page:
 
-				page = 1
+			# 	page = 1
 
-				# if var_callback:
-					# page = int(var_callback.data.split('#')[1])
+			# 	# if var_callback:
+			# 		# page = int(var_callback.data.split('#')[1])
 
-				# print('page',page)
+			# 	# print('page',page)
 
-				paginator = InlineKeyboardPaginator(
-				page_count = len(list_mess_response),
-				current_page=page,
-				data_pattern='Trang#{page}'
-				)
+			# 	paginator = InlineKeyboardPaginator(
+			# 	page_count = len(list_mess_response),
+			# 	current_page=page,
+			# 	data_pattern='Trang#{page}'
+			# 	)
 			
-				# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-				bot.sendMessage(
-					chat_id=chat_id, 
-					text=list_mess_response[page-1], 
-					reply_to_message_id=msg_id,
-					reply_markup=paginator.markup)
-			else:
+			# 	# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+			# 	bot.sendMessage(
+			# 		chat_id=chat_id, 
+			# 		text=list_mess_response[page-1], 
+			# 		reply_to_message_id=msg_id,
+			# 		reply_markup=paginator.markup)
+			# else:
 
-				bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
+			bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
 
 			return 'ok'
 
 		else:
 			return 'fail'
 
-	elif var_callback:
-		page = int(var_callback.data.split('#')[1])
+	# elif var_callback:
+	# 	page = int(var_callback.data.split('#')[1])
 
-		print('page',page)
+	# 	print('page',page)
 		
-		paginator = InlineKeyboardPaginator(
-			page_count = len(list_mess_response),
-			current_page=page,
-			data_pattern='Trang#{page}'
-			)
+	# 	paginator = InlineKeyboardPaginator(
+	# 		page_count = len(list_mess_response),
+	# 		current_page=page,
+	# 		data_pattern='Trang#{page}'
+	# 		)
 		
-			# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
-		# bot.editMessageText(
-		bot.sendMessage(
-			chat_id=chat_id, 
-			text=list_mess_response[page-1], 
-			reply_to_message_id=msg_id,
-			# reply_markup=reply_markup
-			reply_markup=paginator.markup
-			)
-		return 'ok'
+	# 		# bot.sendMessage(chat_id=chat_id, text=mess_response, reply_to_message_id=msg_id)
+	# 	# bot.editMessageText(
+	# 	bot.sendMessage(
+	# 		chat_id=chat_id, 
+	# 		text=list_mess_response[page-1], 
+	# 		reply_to_message_id=msg_id,
+	# 		# reply_markup=reply_markup
+	# 		reply_markup=paginator.markup
+	# 		)
+		# return 'ok'
 	
 	else:
 		return 'fail'
