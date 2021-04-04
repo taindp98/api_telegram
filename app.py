@@ -40,8 +40,9 @@ def respond():
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
 	object_message = update.message
-
+	print('---',"object_message",object_message,'----')
 	object_callback = update.callback_query
+	print('---',"object_callback",object_callback,'----')
 
 	if object_message:
 		object_text = object_message.text
@@ -56,7 +57,7 @@ def respond():
 			text = CVS_Mana.render_mess(page)
 
 			if CVS_Mana.total_page > 1:
-				
+				print('day ne')
 				CVS_Mana.paginator(text,page,bot)
 			
 			else:
