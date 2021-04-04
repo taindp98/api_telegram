@@ -70,7 +70,7 @@ def respond():
 	else:
 		if object_callback:
 
-			CVS_Mana = ConversationManagement(object_callback.message)
+			# CVS_Mana = ConversationManagement(object_callback.message)
 			object_page = int(object_callback.data.split('#')[1])
 			
 			CVS_Mana.paginator(object_page,bot)
