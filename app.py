@@ -35,7 +35,7 @@ global list_mess_response
 def respond():
 	# global chat_id
 	# global msg_id
-
+	global CVS_Mana
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
