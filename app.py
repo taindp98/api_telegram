@@ -39,6 +39,8 @@ def respond():
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
+	# CVS_Mana = ConversationManagement(update)
+
 	object_message = update.message
 	print('---',"object_message",object_message,'----')
 	object_callback = update.callback_query
@@ -67,6 +69,8 @@ def respond():
 			return 'fail'
 	else:
 		if object_callback:
+
+			CVS_Mana = ConversationManagement(object_callback.message)
 			object_page = int(object_callback.data.split('#')[1])
 			
 			CVS_Mana.paginator(object_page,bot)

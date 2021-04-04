@@ -12,18 +12,31 @@ class ConversationManagement:
         self.text = update.message.text.encode('utf-8').decode()
 
         self.converse_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
+        # self.input_data = {}
+        # self.input_data['message'] = self.text
+
+        # # print('====')
+        # # print(self.text)
+
+        # self.input_data['state_tracker_id'] = self.chat_id
+        # self.list_mess_response = []
+
+        # self.total_page = 0
+    
+
+    def process_mess(self):
+
         self.input_data = {}
         self.input_data['message'] = self.text
 
         # print('====')
-        print(self.text)
+        # print(self.text)
 
         self.input_data['state_tracker_id'] = self.chat_id
         self.list_mess_response = []
 
         self.total_page = 0
-
-    def process_mess(self):
+        
         response_object = requests.post(url=self.converse_api_url, json=self.input_data)
         response_object_json = response_object.json()
 
