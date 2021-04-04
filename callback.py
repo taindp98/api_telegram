@@ -24,6 +24,9 @@ class ConversationManagement:
     def process_mess(self):
         response_object = requests.post(url=self.converse_api_url, json=self.input_data)
         response_object_json = response_object.json()
+
+        print('response_object_json',self.response_object_json)
+
         self.list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in response_object_json['message']]
         
         print('list_mess_response',self.list_mess_response)
