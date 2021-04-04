@@ -13,7 +13,7 @@ class ConversationManagement:
         self.input_data = {}
         self.input_data['message'] = self.text
 
-        print('====')
+        # print('====')
         print(self.text)
 
         self.input_data['state_tracker_id'] = self.chat_id
@@ -25,7 +25,12 @@ class ConversationManagement:
         response_object = requests.post(url=self.converse_api_url, json=self.input_data)
         response_object_json = response_object.json()
         self.list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in response_object_json['message']]
+        
+        print('list_mess_response',self.list_mess_response)
+        
         self.total_page = len(self.list_mess_response)
+
+        print('total_page',self.total_page)
 
     def render_mess(self,page):
         
