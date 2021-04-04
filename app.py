@@ -10,6 +10,8 @@ import telegram
 from telegram_bot_pagination import InlineKeyboardPaginator
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
+from callback import ConversationManagement
+
 #from telebot.credentials import bot_token, bot_user_name,URL
 
 # bot_token = "1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck"
@@ -26,8 +28,6 @@ bot = telegram.Bot(token=TOKEN)
 app = Flask(__name__)
 
 
-
-
 global page
 global list_mess_response
 
@@ -36,33 +36,42 @@ def respond():
 	# global chat_id
 	# global msg_id
 
-
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
-	var_callback = update.callback_query
+	CVS_Mana = ConversationManagement(update)
 
-	if update.message:
-		chat_id = update.message.chat.id
-		msg_id = update.message.message_id
+	CVS_Mana.process_mess()
+
+	page = int(0)
+
+	text = CVS_Mana.render_mess(page)
+
+	CVS_Mana.send_mess(text,bot)
+
+	# var_callback = update.callback_query
+
+	# if update.message:
+		# chat_id = update.message.chat.id
+		# msg_id = update.message.message_id
 
 
 
 	# Telegram understands UTF-8, so encode text for unicode compatibility
-		if update.message.text:
-			text = update.message.text.encode('utf-8').decode()
+		# if update.message.text:
+			# text = update.message.text.encode('utf-8').decode()
 			# for debugging purposes only
-			print("got text message :", text)
+			# print("got text message :", text)
 			# the first time you chat with the bot AKA the welcoming message
 			
-			chatbot_sys_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
-			input_data = {}
-			input_data['message'] = str(text)
-			input_data['state_tracker_id'] = chat_id
-			r = requests.post(url=chatbot_sys_api_url, json=input_data)
-			mess_response = r.json()
+			# chatbot_sys_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
+			# input_data = {}
+			# input_data['message'] = str(text)
+			# input_data['state_tracker_id'] = chat_id
+			# r = requests.post(url=chatbot_sys_api_url, json=input_data)
+			# mess_response = r.json()
 
-			list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
+			# list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in mess_response['message']]
 
 			# if len(list_mess_response) > 1:
 			# # mess_response = chatbot_respose['message'].replace('\n', r'').replace(r'"',r'')
@@ -99,12 +108,12 @@ def respond():
 			# 		reply_markup=paginator.markup)
 			# else:
 
-			bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
+			# bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
 
-			return 'ok'
+	return 'ok'
 
-		else:
-			return 'fail'
+		# else:
+		# 	return 'fail'
 
 	# elif var_callback:
 	# 	page = int(var_callback.data.split('#')[1])
@@ -128,8 +137,8 @@ def respond():
 	# 		)
 		# return 'ok'
 	
-	else:
-		return 'fail'
+	# else:
+	# 	return 'fail'
 
 @app.route('/set_webhook', methods=['GET', 'POST'])
 def set_webhook():
