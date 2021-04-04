@@ -38,16 +38,26 @@ def respond():
 
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
+	object_message = update.message
+	if object_message:
+		object_text = object_message.text
+		if object_text:
 
-	CVS_Mana = ConversationManagement(update)
+			CVS_Mana = ConversationManagement(update)
 
-	CVS_Mana.process_mess()
+			CVS_Mana.process_mess()
 
-	page = int(0)
+			page = int(0)
 
-	text = CVS_Mana.render_mess(page)
+			text = CVS_Mana.render_mess(page)
 
-	CVS_Mana.send_mess(text,bot)
+			CVS_Mana.send_mess(text,bot)
+
+			return 'success'
+		else:
+			return 'fail'
+	else:
+		return 'fail'
 
 	# var_callback = update.callback_query
 
@@ -110,7 +120,7 @@ def respond():
 
 			# bot.sendMessage(chat_id=chat_id, text=list_mess_response[0], reply_to_message_id=msg_id)
 
-	return 'ok'
+	# return 'ok'
 
 		# else:
 		# 	return 'fail'

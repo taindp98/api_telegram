@@ -3,15 +3,19 @@ import requests
 class ConversationManagement:
     def __init__(self,update):
 
-        if update.message:
-            if update.message.text:
-                self.chat_id = update.message.chat.id
-                self.msg_id = update.message.message_id
-                self.text = update.message.text.encode('utf-8').decode()
+        # if update.message:
+            # if update.message.text:
+        self.chat_id = update.message.chat.id
+        self.msg_id = update.message.message_id
+        self.text = update.message.text.encode('utf-8').decode()
 
         self.converse_api_url = 'https://chatbot-hcmut.herokuapp.com/api/convers-manager'
         self.input_data = {}
         self.input_data['message'] = self.text
+
+        print('====')
+        print(self.text)
+
         self.input_data['state_tracker_id'] = self.chat_id
         self.list_mess_response = []
 
@@ -28,6 +32,6 @@ class ConversationManagement:
         return self.list_mess_response[page]
 
     def send_mess(self,text,bot):
-        
+
         bot.sendMessage(chat_id=self.chat_id, text=text, reply_to_message_id=self.msg_id)
 
