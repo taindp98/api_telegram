@@ -52,24 +52,25 @@ def respond():
 
 			CVS_Mana.process_mess()
 
-			page = int(0)
+			page = int(1)
 
-			text = CVS_Mana.render_mess(page)
+			# text = CVS_Mana.render_mess(page)
 
 			if CVS_Mana.total_page > 1:
-				print('day ne')
-				CVS_Mana.paginator(text,page,bot)
+				CVS_Mana.paginator(page,bot)
 			
 			else:
-				
-				CVS_Mana.send_mess(text,bot)
+				CVS_Mana.single_mess(page,bot)
 
 			return 'success'
 		else:
 			return 'fail'
 	else:
 		if object_callback:
-			print('total_page',CVS_Mana.total_page)
+			object_page = int(object_callback.data.split('#')[1])
+			
+			CVS_Mana.paginator(object_page,bot)
+			# print('total_page',CVS_Mana.total_page)
 			return 'success'
 		else:
 			return 'fail'

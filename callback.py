@@ -39,13 +39,17 @@ class ConversationManagement:
 
     def render_mess(self,page):
         
-        return self.list_mess_response[page]
+        return self.list_mess_response[page-1]
 
-    def send_mess(self,text,bot):
+    def single_mess(self,page,bot):
 
-        bot.sendMessage(chat_id=self.chat_id, text=text, reply_to_message_id=self.msg_id)
+        bot.sendMessage(
+            chat_id=self.chat_id, 
+            text=self.render_mess(page), 
+            reply_to_message_id=self.msg_id
+            )
 
-    def paginator(self,text,page,bot):
+    def paginator(self,page,bot):
 
         paginator = InlineKeyboardPaginator(
             page_count = self.total_page,
@@ -55,7 +59,8 @@ class ConversationManagement:
 
         bot.sendMessage(
             chat_id=self.chat_id, 
-            text=text, 
+            # text=text,
+            text = self.render_mess(page),
             reply_to_message_id=self.msg_id,
             reply_markup=paginator.markup
             )
