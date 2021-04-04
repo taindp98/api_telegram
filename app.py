@@ -38,7 +38,11 @@ def respond():
 
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
+
 	object_message = update.message
+
+	object_callback = update.callback_query
+
 	if object_message:
 		object_text = object_message.text
 		if object_text:
@@ -57,7 +61,11 @@ def respond():
 		else:
 			return 'fail'
 	else:
-		return 'fail'
+		if object_callback:
+			print('total_page',CVS_Mana.total_page)
+			return 'success'
+		else:
+			return 'fail'
 
 	# var_callback = update.callback_query
 

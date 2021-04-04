@@ -29,11 +29,11 @@ class ConversationManagement:
 
         self.list_mess_response = [item.replace('\n', r'').replace(r'"',r'') for item in response_object_json['message']]
         
-        print('list_mess_response',self.list_mess_response)
+        # print('list_mess_response',self.list_mess_response)
         
         self.total_page = len(self.list_mess_response)
 
-        print('total_page',self.total_page)
+        # print('total_page',self.total_page)
 
     def render_mess(self,page):
         
