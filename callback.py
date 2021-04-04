@@ -1,4 +1,6 @@
 import requests
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+
 
 class ConversationManagement:
     def __init__(self,update):
@@ -43,3 +45,17 @@ class ConversationManagement:
 
         bot.sendMessage(chat_id=self.chat_id, text=text, reply_to_message_id=self.msg_id)
 
+    def paginator(self,text,page,bot):
+
+        paginator = InlineKeyboardPaginator(
+            page_count = self.total_page,
+            current_page=page,
+            data_pattern='Trang#{page}'
+        )
+
+        bot.sendMessage(
+            chat_id=self.chat_id, 
+            text=text, 
+            reply_to_message_id=self.msg_id,
+            reply_markup=paginator.markup
+            )

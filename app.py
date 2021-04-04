@@ -55,7 +55,13 @@ def respond():
 
 			text = CVS_Mana.render_mess(page)
 
-			CVS_Mana.send_mess(text,bot)
+			if CVS_Mana.total_page > 1:
+				
+				CVS_Mana.paginator(text,page,bot)
+			
+			else:
+				
+				CVS_Mana.send_mess(text,bot)
 
 			return 'success'
 		else:
