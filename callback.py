@@ -1,6 +1,6 @@
 import requests
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-
+# from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram_bot_pagination import InlineKeyboardPaginator
 
 class ConversationManagement:
     def __init__(self,update):

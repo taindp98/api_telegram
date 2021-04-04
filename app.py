@@ -8,7 +8,7 @@ from flask import Flask, request
 import telegram
 
 from telegram_bot_pagination import InlineKeyboardPaginator
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+# from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 from callback import ConversationManagement
 
