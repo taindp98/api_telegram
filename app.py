@@ -28,14 +28,15 @@ bot = telegram.Bot(token=TOKEN)
 app = Flask(__name__)
 
 
-global page
-global list_mess_response
+# global page
+# global list_mess_response
+global CVS_Mana
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
 	# global chat_id
 	# global msg_id
-	global CVS_Mana
+	
    # retrieve the message in JSON and then transform it to Telegram object
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
