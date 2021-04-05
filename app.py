@@ -30,7 +30,7 @@ app = Flask(__name__)
 
 # global page
 # global list_mess_response
-global CVS_Mana
+
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
@@ -52,10 +52,13 @@ def respond():
 		if object_text:
 
 			CVS_Mana = ConversationManagement(update)
-
+			
+			global CVS_Mana
+			
 			CVS_Mana.process_mess()
 
-			page = int(1)
+			page = int(1)	
+
 
 			# text = CVS_Mana.render_mess(page)
 
