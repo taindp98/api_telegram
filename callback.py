@@ -69,7 +69,7 @@ class ConversationManagement:
                 )
         else:
             
-            print('--- current mess id',self.msg_id,'---')
+            # print('--- current mess id',self.msg_id,'---')
 
             bot.editMessageText(
                 chat_id=self.chat_id, 

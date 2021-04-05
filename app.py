@@ -77,7 +77,10 @@ def respond():
 			# CVS_Mana = ConversationManagement(object_callback.message)
 			object_page = int(object_callback.data.split('#')[1])
 			
-			# print('object_page',object_page)
+			curr_mess_id = object_callback.message.message_id
+
+            print('--- current mess id',curr_mess_id,'---')
+			# print('object_page',object_page)s
 			if CVS_Mana:
 				CVS_Mana.paginator(object_page,bot,first_res)
 				return 'success'
