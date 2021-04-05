@@ -81,8 +81,8 @@ def respond():
 			
 			edit_mess_id = object_callback.message.message_id
 
-			# print('--- curr_mess_id',curr_mess_id,'---')
-			# print('object_page',object_page)s
+			print('--- edit_mess_id',edit_mess_id,'---')
+			# print('object_page',object_page)
 			if CVS_Mana:
 				CVS_Mana.paginator(object_page,bot,edit_mess_id,first_res)
 				return 'success'
