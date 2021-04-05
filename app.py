@@ -59,7 +59,7 @@ def respond():
 
 			page = int(1)	
 
-
+			
 			# text = CVS_Mana.render_mess(page)
 
 			if CVS_Mana.total_page > 1:

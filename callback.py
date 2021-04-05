@@ -58,10 +58,18 @@ class ConversationManagement:
             data_pattern='Trang#{page}'
         )
 
-        bot.sendMessage(
+        # bot.sendMessage(
+        #     chat_id=self.chat_id, 
+        #     # text=text,
+        #     text = self.render_mess(page),
+        #     reply_to_message_id=self.msg_id,
+        #     reply_markup=paginator.markup
+        #     )
+        bot.editMessageText(
             chat_id=self.chat_id, 
             # text=text,
             text = self.render_mess(page),
-            reply_to_message_id=self.msg_id,
+            message_id = self.msg_id,
+            # reply_to_message_id=self.msg_id,
             reply_markup=paginator.markup
-            )
+        )
