@@ -70,10 +70,10 @@ class ConversationManagement:
         else:
 
             bot.editMessageText(
-                chat_id=self.chat_id, 
+                # chat_id=self.chat_id, 
             #     # text=text,
                 text = self.render_mess(page),
-            #     message_id = self.msg_id,
+                inline_message_id = self.msg_id,
             #     # reply_to_message_id=self.msg_id,
                 reply_markup=paginator.markup
             )
