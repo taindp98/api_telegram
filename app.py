@@ -41,6 +41,8 @@ def respond():
 	update = telegram.Update.de_json(request.get_json(force=True), bot)
 
 	# CVS_Mana = ConversationManagement(update)
+	
+	global CVS_Mana
 
 	object_message = update.message
 	print('---',"object_message",object_message,'----')
@@ -50,7 +52,7 @@ def respond():
 	if object_message:
 		object_text = object_message.text
 		if object_text:
-			global CVS_Mana
+			# global CVS_Mana
 			CVS_Mana = ConversationManagement(update)
 			
 			
