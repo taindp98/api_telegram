@@ -46,7 +46,7 @@ def respond():
 	print('---',"object_message",object_message,'----')
 	object_callback = update.callback_query
 	print('---',"object_callback",object_callback,'----')
-
+	first_res = False
 	if object_message:
 		object_text = object_message.text
 		if object_text:
@@ -59,11 +59,11 @@ def respond():
 
 			page = int(1)	
 
-			
+			first_res = True
 			# text = CVS_Mana.render_mess(page)
 
 			if CVS_Mana.total_page > 1:
-				CVS_Mana.paginator(page,bot)
+				CVS_Mana.paginator(page,bot,first_res)
 			
 			else:
 				CVS_Mana.single_mess(page,bot)

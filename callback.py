@@ -50,7 +50,7 @@ class ConversationManagement:
             reply_to_message_id=self.msg_id
             )
 
-    def paginator(self,page,bot):
+    def paginator(self,page,bot,first_res):
 
         paginator = InlineKeyboardPaginator(
             page_count = self.total_page,
@@ -58,18 +58,20 @@ class ConversationManagement:
             data_pattern='Trang#{page}'
         )
 
-        # bot.sendMessage(
-        #     chat_id=self.chat_id, 
-        #     # text=text,
-        #     text = self.render_mess(page),
-        #     reply_to_message_id=self.msg_id,
-        #     reply_markup=paginator.markup
-        #     )
-        bot.editMessageText(
-            chat_id=self.chat_id, 
-            # text=text,
-            text = self.render_mess(page),
-            message_id = self.msg_id,
-            # reply_to_message_id=self.msg_id,
-            reply_markup=paginator.markup
-        )
+        if first_res:
+            bot.sendMessage(
+                chat_id=self.chat_id, 
+                # text=text,
+                text = self.render_mess(page),
+                reply_to_message_id=self.msg_id,
+                reply_markup=paginator.markup
+                )
+        else:
+            bot.editMessageText(
+                chat_id=self.chat_id, 
+                # text=text,
+                text = self.render_mess(page),
+                message_id = self.msg_id,
+                # reply_to_message_id=self.msg_id,
+                reply_markup=paginator.markup
+            )
