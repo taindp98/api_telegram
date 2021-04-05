@@ -79,7 +79,7 @@ def respond():
 			
 			# print('object_page',object_page)
 			if CVS_Mana:
-				CVS_Mana.paginator(object_page,bot)
+				CVS_Mana.paginator(object_page,bot,first_res)
 				return 'success'
 			else:
 				return 'fail'
