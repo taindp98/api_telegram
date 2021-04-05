@@ -68,12 +68,23 @@ class ConversationManagement:
                 reply_markup=paginator.markup
                 )
         else:
-            bot.editMessageText(
+            bot.delete_message(
+                self.chat_id,
+                self.msg_id
+            )
+            bot.sendMessage(
                 chat_id=self.chat_id, 
                 # text=text,
                 text = self.render_mess(page),
-                message_id = self.msg_id,
-                # reply_to_message_id=self.msg_id,
-                # reply_markup=paginator.markup
-                reply_markup = ForceReply()
+                reply_to_message_id=self.msg_id,
+                reply_markup=paginator.markup
+                )
+            # bot.editMessageText(
+            #     chat_id=self.chat_id, 
+            #     # text=text,
+            #     text = self.render_mess(page),
+            #     message_id = self.msg_id,
+            #     # reply_to_message_id=self.msg_id,
+            #     # reply_markup=paginator.markup
+            #     # reply_markup = ForceReply()
             )
