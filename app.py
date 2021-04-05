@@ -50,10 +50,10 @@ def respond():
 	if object_message:
 		object_text = object_message.text
 		if object_text:
-
+			global CVS_Mana
 			CVS_Mana = ConversationManagement(update)
 			
-			global CVS_Mana
+			
 			
 			CVS_Mana.process_mess()
 
