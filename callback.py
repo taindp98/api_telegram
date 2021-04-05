@@ -1,6 +1,7 @@
 import requests
 # from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram_bot_pagination import InlineKeyboardPaginator
+from telegram import ForceReply
 
 class ConversationManagement:
     def __init__(self,update):
@@ -73,5 +74,6 @@ class ConversationManagement:
                 text = self.render_mess(page),
                 message_id = self.msg_id,
                 # reply_to_message_id=self.msg_id,
-                reply_markup=paginator.markup
+                # reply_markup=paginator.markup
+                reply_markup = ForceReply()
             )
