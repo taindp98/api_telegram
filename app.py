@@ -63,7 +63,9 @@ def respond():
 			# text = CVS_Mana.render_mess(page)
 
 			if CVS_Mana.total_page > 1:
-				CVS_Mana.paginator(page,bot,first_res)
+
+				edit_mess_id = None
+				CVS_Mana.paginator(page,bot,edit_mess_id,first_res)
 			
 			else:
 				CVS_Mana.single_mess(page,bot)
@@ -77,12 +79,12 @@ def respond():
 			# CVS_Mana = ConversationManagement(object_callback.message)
 			object_page = int(object_callback.data.split('#')[1])
 			
-			curr_mess_id = object_callback.message.message_id
+			edit_mess_id = object_callback.message.message_id
 
-			print('--- curr_mess_id',curr_mess_id,'---')
+			# print('--- curr_mess_id',curr_mess_id,'---')
 			# print('object_page',object_page)s
 			if CVS_Mana:
-				CVS_Mana.paginator(object_page,bot,first_res)
+				CVS_Mana.paginator(object_page,bot,edit_mess_id,first_res)
 				return 'success'
 			else:
 				return 'fail'

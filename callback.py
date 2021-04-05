@@ -51,7 +51,7 @@ class ConversationManagement:
             reply_to_message_id=self.msg_id
             )
 
-    def paginator(self,page,bot,first_res):
+    def paginator(self,page,bot,edit_mess_id,first_res):
 
         paginator = InlineKeyboardPaginator(
             page_count = self.total_page,
@@ -69,13 +69,9 @@ class ConversationManagement:
                 )
         else:
             
-            # print('--- current mess id',self.msg_id,'---')
-
             bot.editMessageText(
                 chat_id=self.chat_id, 
-            #     # text=text,
                 text = self.render_mess(page),
-                # inline_message_id = self.msg_id,
-                reply_to_message_id=self.msg_id,
+                message_id = edit_mess_id,
                 reply_markup=paginator.markup
             )
