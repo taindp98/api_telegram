@@ -49,7 +49,7 @@ class ConversationManagement:
         if text:
             bot.sendMessage(
                 chat_id=self.chat_id, 
-                text=, 
+                text=text, 
                 reply_to_message_id=self.msg_id
                 )
 
