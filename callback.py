@@ -40,18 +40,16 @@ class ConversationManagement:
         # print('total_page',self.total_page)
 
     def render_mess(self,page):
-        if self.list_mess_response[page-1]:
-            return self.list_mess_response[page-1]
+        
+        return self.list_mess_response[page-1]
 
     def single_mess(self,page,bot):
-        
-        text = self.render_mess(page)
-        if text:
-            bot.sendMessage(
-                chat_id=self.chat_id, 
-                text=text, 
-                reply_to_message_id=self.msg_id
-                )
+
+        bot.sendMessage(
+            chat_id=self.chat_id, 
+            text=self.render_mess(page), 
+            reply_to_message_id=self.msg_id
+            )
 
     def paginator(self,page,bot,edit_mess_id,first_res):
 
@@ -60,21 +58,20 @@ class ConversationManagement:
             current_page=page,
             data_pattern='Trang#{page}'
         )
-        text = self.render_mess(page)
-        if first_res and text:
-                bot.sendMessage(
-                    chat_id=self.chat_id, 
-                    text=text,
-                    # text = ,
-                    reply_to_message_id=self.msg_id,
-                    reply_markup=paginator.markup
-                    )
-        elif text:
+
+        if first_res:
+            bot.sendMessage(
+                chat_id=self.chat_id, 
+                # text=text,
+                text = self.render_mess(page),
+                reply_to_message_id=self.msg_id,
+                reply_markup=paginator.markup
+                )
+        else:
             
             bot.editMessageText(
                 chat_id=self.chat_id, 
-                # text = self.render_mess(page),
-                text = text,
+                text = self.render_mess(page),
                 message_id = edit_mess_id,
                 reply_markup=paginator.markup
             )

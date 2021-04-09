@@ -59,20 +59,24 @@ def respond():
 			
 			CVS_Mana.process_mess()
 
-			page = int(1)	
+			if CVS_Mana.list_mess_response:
 
-			first_res = True
-			# text = CVS_Mana.render_mess(page)
+				page = int(1)	
 
-			if CVS_Mana.total_page > 1:
+				first_res = True
+				# text = CVS_Mana.render_mess(page)
 
-				edit_mess_id = None
-				CVS_Mana.paginator(page,bot,edit_mess_id,first_res)
-			
+				if CVS_Mana.total_page > 1:
+
+					edit_mess_id = None
+					CVS_Mana.paginator(page,bot,edit_mess_id,first_res)
+				
+				else:
+					CVS_Mana.single_mess(page,bot)
+
+				return 'success'
 			else:
-				CVS_Mana.single_mess(page,bot)
-
-			return 'success'
+				return 'fail'
 		else:
 			return 'fail'
 	else:
