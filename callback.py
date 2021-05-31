@@ -20,7 +20,7 @@ class ConversationManagement:
 
         print('====')
         self.start = timeit.default_timer()
-        print('time retrieval message :',start)
+        print('time retrieval message :',self.start)
         print(self.text)
 
         self.input_data['state_tracker_id'] = self.chat_id
