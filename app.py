@@ -1,8 +1,8 @@
 
 import json
 #import telebot
+import timeit
 import requests
-
 import re
 from flask import Flask, request
 import telegram
@@ -46,6 +46,7 @@ def respond():
 
 	object_message = update.message
 	print('---',"object_message",object_message,'----')
+	
 	object_callback = update.callback_query
 	print('---',"object_callback",object_callback,'----')
 	first_res = False

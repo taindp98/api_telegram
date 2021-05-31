@@ -2,6 +2,7 @@ import requests
 # from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram_bot_pagination import InlineKeyboardPaginator
 from telegram import ForceReply
+import timeit
 
 class ConversationManagement:
     def __init__(self,update):
@@ -17,8 +18,10 @@ class ConversationManagement:
         self.input_data = {}
         self.input_data['message'] = self.text
 
-        # print('====')
-        # print(self.text)
+        print('====')
+        self.start = timeit.default_timer()
+        print('time retrieval message :',start)
+        print(self.text)
 
         self.input_data['state_tracker_id'] = self.chat_id
         self.list_mess_response = []
@@ -46,6 +49,10 @@ class ConversationManagement:
 
     def single_mess(self,page,bot):
 
+        print('===')
+        end = timeit.default_timer()
+        print('time send message :',end)
+        print('time inference :',str(end-self.start))
         bot.sendMessage(
             chat_id=self.chat_id, 
             text=self.render_mess(page), 
