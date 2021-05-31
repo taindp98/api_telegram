@@ -20,7 +20,7 @@ class ConversationManagement:
 
         print('====')
         self.start = timeit.default_timer()
-        print('time retrieval message :',self.start)
+        print('time receive message :',self.start)
         print(self.text)
 
         self.input_data['state_tracker_id'] = self.chat_id
@@ -68,6 +68,10 @@ class ConversationManagement:
         )
 
         if first_res:
+            print('===')
+            end = timeit.default_timer()
+            print('time send message :',end)
+            print('time inference :',str(end-self.start))
             bot.sendMessage(
                 chat_id=self.chat_id, 
                 # text=text,
@@ -76,7 +80,10 @@ class ConversationManagement:
                 reply_markup=paginator.markup
                 )
         else:
-            
+            print('===')
+            end = timeit.default_timer()
+            print('time send message :',end)
+            print('time inference :',str(end-self.start))
             bot.editMessageText(
                 chat_id=self.chat_id, 
                 text = self.render_mess(page),
