@@ -6,6 +6,8 @@ import requests
 import re
 from flask import Flask, request
 import telegram
+import os
+from dotenv import load_dotenv
 
 from telegram_bot_pagination import InlineKeyboardPaginator
 # from telegram import InlineKeyboardButton, InlineKeyboardMarkup
@@ -14,15 +16,14 @@ from callback import ConversationManagement
 
 #from telebot.credentials import bot_token, bot_user_name,URL
 
-# bot_token = "1607480015:AAFRjjzwhq5FLcwTFgde1gBzjc5v-g5Imck"
-bot_token = '1607480015:AAGcyTXEn7j42RP-0J1ri8kt_-QWLXGkmTU'
+
 bot_user_name = "BKBot"
 URL = "https://telegram-hcmut.herokuapp.com/"
 
 
 global bot
 global TOKEN
-TOKEN = bot_token
+TOKEN = os.getenv('BOT_TOKEN')
 bot = telegram.Bot(token=TOKEN)
 
 app = Flask(__name__)
